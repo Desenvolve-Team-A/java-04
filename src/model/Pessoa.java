@@ -14,7 +14,7 @@ public class Pessoa {
     this.endereco = endereco;
   }
 
-  public static Pessoa cadastrarSemEnd(String nome, int idade, String CPF) {
+  public static Pessoa criarPessoaSemEnd(String nome, int idade, String CPF) {
     return new Pessoa(nome, idade, CPF, new Endereco("", "", "", "", "", ""));
   }
 

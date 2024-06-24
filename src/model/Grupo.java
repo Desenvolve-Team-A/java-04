@@ -5,11 +5,16 @@ import java.util.List;
 
 public class Grupo {
 
-  public Grupo() {
-
-  }
+  private static Grupo uniqueInstance;
 
   private List<Pessoa> grupo = new ArrayList<>();
+
+  public static synchronized Grupo getInstance() {
+    if (uniqueInstance == null) {
+      uniqueInstance = new Grupo();
+    }
+    return uniqueInstance;
+  }
 
   public List<Pessoa> getGrupo() {
     return grupo;
@@ -24,16 +29,14 @@ public class Grupo {
   }
 
   public void excluirPessoa(String nome) {
-
     Pessoa pessoa = null;
-
     for (Pessoa p : grupo) {
       if (p.getNome().equals(nome)) {
         pessoa = p;
+        break;
       }
     }
-
-    if (grupo.contains(pessoa)) {
+    if (pessoa != null) {
       grupo.remove(pessoa);
     } else {
       System.out.println("Pessoa não cadastrada.");
@@ -42,10 +45,8 @@ public class Grupo {
 
   public void mostrarGrupo() {
     System.out.println("** PESSOAS CADASTRADAS **");
-
     for (Pessoa p : grupo) {
       System.out.println("\n" + p.getNome());
     }
   }
-
 }

@@ -67,31 +67,4 @@ public class Endereco {
   public void setTelefone(String telefone) {
     this.telefone = telefone;
   }
-
-  public Endereco cadastraEndereco() {
-
-    Scanner scanner = new Scanner(System.in);
-
-    System.out.print("\nInforme o estado: ");
-    String estado = scanner.nextLine();
-
-    System.out.print("\nInforme a cidade: ");
-    String cidade = scanner.nextLine();
-
-    System.out.print("\nInforme o bairro: ");
-    String bairro = scanner.nextLine();
-
-    System.out.print("\nInforme a rua: ");
-    String rua = scanner.nextLine();
-
-    System.out.print("\nInforme o CEP: ");
-    String cep = scanner.nextLine();
-
-    System.out.print("\nInforme o telefone: ");
-    String telefone = scanner.nextLine();
-
-    Endereco endereco = new Endereco(estado, cidade, bairro, rua, cep, telefone);
-
-    return endereco;
-  }
 }

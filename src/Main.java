@@ -2,17 +2,17 @@ import model.Endereco;
 import model.Grupo;
 import model.Pessoa;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
+    // Instanciando Singleton
+    Grupo grupo = Grupo.getInstance();
+    List<Pessoa> listaDePessoas = grupo.getGrupo();
 
-    Grupo grupo = new Grupo();
-    grupo.grupo
-    Pessoa[] pessoas = new Pessoa[2];
-
-    for (int i = 0; i < pessoas.length; i++) {
+    for (int i = 0; i < 2; i++) {
       Pessoa pessoa = Pessoa.criarPessoaVazio();
 
       System.out.println("\n***** CADASTRO DE PESSOA " + (i + 1) + " *****");
@@ -52,17 +52,15 @@ public class Main {
         }
       } while (pessoa.getCPF() == "");
 
-      pessoas[i] = pessoa;
+      grupo.cadastrarPessoa(pessoa);
     }
 
-    for (int i = 0; i < pessoas.length; i++) {
+    for (int i = 0; i < listaDePessoas.size(); i++) {
       System.out.println("\n***** DADOS DA PESSOA *****");
 
-      System.out.println("\nSeu nome é " + pessoas[i].getNome() + " tem " + pessoas[i].getIdade()
-          + " anos e seu CPF é " + pessoas[i].getCPF());
+      System.out.println("\nSeu nome é " + listaDePessoas.get(i).getNome() + " tem " + listaDePessoas.get(i).getIdade()
+          + " anos e seu CPF é " + listaDePessoas.get(i).getCPF());
     }
-
-    Grupo grupo = new Grupo();
 
     boolean verificacao = true;
 
@@ -85,18 +83,18 @@ public class Main {
       if (resposta > 0 && resposta < 5) {
         verificacao = false;
       }
-
+      Scanner novoScanner = new Scanner(System.in);
       switch (resposta) {
         case 1:
           System.out.println("\nInforme o nome: ");
-          String nome = scanner.nextLine();
+          String nome = novoScanner.nextLine();
           if (nome.matches(" ") || !Validacoes.validarPalavras(nome)) {
             System.out.println("Nome inválido!");
             break;
           }
 
           System.out.println("Informe a idade: ");
-          String idadeStr = scanner.nextLine();
+          String idadeStr = novoScanner.nextLine();
           if (idadeStr.matches(" ") || !Validacoes.validarIdade(idadeStr)) {
             System.out.println("Idade inválida!");
             return;
@@ -104,51 +102,51 @@ public class Main {
           int idade = Integer.parseInt(idadeStr);
 
           System.out.println("Informe o cpf: ");
-          String cpf = scanner.nextLine();
+          String cpf = novoScanner.nextLine();
           if (!Validacoes.validarCPF(cpf)) {
             System.out.println("CPF inválido!");
             return;
           }
 
-          Pessoa pessoa = new Pessoa(nome, idade, cpf);
+          Pessoa pessoa = Pessoa.criarPessoaSemEnd(nome, idade, cpf);
 
           System.out.println("Informe o estado: ");
-          String estado = scanner.nextLine();
+          String estado = novoScanner.nextLine();
           if (estado.matches(" ") || !Validacoes.validarPalavras(estado)) {
             System.out.println("Estado inválido!");
             return;
           }
 
           System.out.println("Informe a cidade: ");
-          String cidade = scanner.nextLine();
+          String cidade = novoScanner.nextLine();
           if (cidade.matches(" ") || !Validacoes.validarPalavras(cidade)) {
             System.out.println("Cidade inválida!");
             return;
           }
 
           System.out.println("Informe o bairro: ");
-          String bairro = scanner.nextLine();
+          String bairro = novoScanner.nextLine();
           if (bairro.matches(" ") || !Validacoes.validarPalavras(bairro)) {
             System.out.println("Bairro inválido!");
             return;
           }
 
           System.out.println("Informe a rua: ");
-          String rua = scanner.nextLine();
+          String rua = novoScanner.nextLine();
           if (rua.matches(" ") || !Validacoes.validarPalavras(rua)) {
             System.out.println("Rua inválida!");
             return;
           }
 
           System.out.println("Informe o CEP: ");
-          String cep = scanner.nextLine();
+          String cep = novoScanner.nextLine();
           if (!Validacoes.validarCEP(cep)) {
             System.out.println("CEP inválido!");
             return;
           }
 
           System.out.println("Informe o telefone: ");
-          String telefone = scanner.nextLine();
+          String telefone = novoScanner.nextLine();
           if (!Validacoes.validarTelefone(telefone)) {
             System.out.println("Telefone inválido!");
             return;
@@ -177,6 +175,8 @@ public class Main {
           break;
 
         case 4:
+          novoScanner.close();
+          scanner.close();
           System.out.println("|| Você saiu do programa! ||");
           System.exit(0);
       }
