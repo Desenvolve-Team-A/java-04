@@ -33,7 +33,7 @@ public class Validacoes {
       if (!nome.matches(" ") && validarPalavras(nome)) {
         pessoa.setNome(nome);
       } else {
-        System.out.println("Informe um nome válido!");
+        System.out.println("Informe um nome valido!");
       }
     } while (pessoa.getNome() == "");
     return nome;
@@ -76,7 +76,7 @@ public class Validacoes {
       if (!estado.matches(" ") && validarPalavras(estado)) {
         pessoa.getEndereco().setEstado(estado);
       } else {
-        System.out.println("Estado inválido!");
+        System.out.println("Estado invalido!");
       }
     } while (pessoa.getEndereco().getEstado() == "");
   }
@@ -88,7 +88,7 @@ public class Validacoes {
       if (!cidade.matches(" ") && validarPalavras(cidade)) {
         pessoa.getEndereco().setCidade(cidade);
       } else {
-        System.out.println("Cidade inválida!");
+        System.out.println("Cidade invalida!");
       }
     } while (pessoa.getEndereco().getCidade() == "");
   }
@@ -100,7 +100,7 @@ public class Validacoes {
       if (!bairro.matches(" ") && validarPalavras(bairro)) {
         pessoa.getEndereco().setBairro(bairro);
       } else {
-        System.out.println("Bairro inválido!");
+        System.out.println("Bairro invalido!");
       }
     } while (pessoa.getEndereco().getBairro() == "");
   }

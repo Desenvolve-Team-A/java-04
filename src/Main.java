@@ -26,23 +26,23 @@ public class Main {
     for (int i = 0; i < listaDePessoas.size(); i++) {
       System.out.println("\n***** DADOS DA PESSOA *****");
 
-      System.out.println("\nSeu nome é " + listaDePessoas.get(i).getNome() + " tem " + listaDePessoas.get(i).getIdade()
-          + " anos e seu CPF é " + listaDePessoas.get(i).getCPF());
+      System.out.println("\nSeu nome e " + listaDePessoas.get(i).getNome() + " tem " + listaDePessoas.get(i).getIdade()
+          + " anos e seu CPF e " + listaDePessoas.get(i).getCPF());
     }
 
     boolean manterPrograma = true;
 
     while (manterPrograma) {
       System.out.println("***** MENU DE CADASTRO *****");
-      System.out.println("\nPressione a tecla de acordo com a opção desejada:");
+      System.out.println("\nPressione a tecla de acordo com a opcao desejada:");
       System.out.println("[1] - Para cadastrar uma pessoa.");
       System.out.println("[2] - Para excluir uma pessoa.");
       System.out.println("[3] - Para ver as pessoas cadastradas.");
       System.out.println("[4] - Para sair do sistema");
-      System.out.print("Opção escolhida: ");
+      System.out.print("Opcao escolhida: ");
 
       while (!scanner.hasNextInt()) {
-        System.out.println("Opção inválida!");
+        System.out.println("Opcao invalida!");
         scanner.nextInt();
       }
 
@@ -67,7 +67,7 @@ public class Main {
 
         case 2:
           Scanner scanner2 = new Scanner(System.in);
-          System.out.print("Qual nome da pessoa que você deseja excluir? ");
+          System.out.print("Qual nome da pessoa que voce deseja excluir? ");
           String nomeExcluir = scanner2.nextLine();
 
           grupo.excluirPessoa(nomeExcluir);
@@ -80,7 +80,7 @@ public class Main {
         case 4:
           manterPrograma = false;
           scanner.close();
-          System.out.println("|| Você saiu do programa! ||");
+          System.out.println("|| Voce saiu do programa! ||");
           System.exit(0);
       }
     }
