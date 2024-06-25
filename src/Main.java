@@ -21,9 +21,6 @@ public class Main {
       Validacoes.coletaCPF(pessoa);
 
       grupo.cadastrarPessoa(pessoa);
-      for (Pessoa p : listaDePessoas) {
-        System.out.println(p.getNome());
-      }
     }
 
     for (int i = 0; i < listaDePessoas.size(); i++) {
