@@ -1,4 +1,3 @@
-import model.Endereco;
 import model.Grupo;
 import model.Pessoa;
 
@@ -10,49 +9,21 @@ public class Main {
     Scanner scanner = new Scanner(System.in);
     // Instanciando Singleton
     Grupo grupo = Grupo.getInstance();
-    List<Pessoa> listaDePessoas = grupo.getGrupo();
+    List<Pessoa> listaDePessoas = grupo.getListaDePessoas();
 
     for (int i = 0; i < 2; i++) {
-      Pessoa pessoa = Pessoa.criarPessoaVazio();
-
       System.out.println("\n***** CADASTRO DE PESSOA " + (i + 1) + " *****");
 
-      String nome;
-      do {
-        System.out.print("Informe o nome dessa pessoa: ");
-        nome = scanner.nextLine();
-        if (!nome.matches(" ") && Validacoes.validarPalavras(nome)) {
-          pessoa.setNome(nome);
-        } else {
-          System.out.println("Informe um nome válido!");
-        }
-      } while (pessoa.getNome() == "");
+      Pessoa pessoa = Pessoa.criarPessoaVazio();
 
-      String idadeStr;
-      int idade;
-      do {
-        System.out.print("Informe a idade dessa pessoa (0-120): ");
-        idadeStr = scanner.nextLine();
-        if (!idadeStr.matches(" ") && Validacoes.validarIdade(idadeStr)) {
-          idade = Integer.parseInt(idadeStr);
-          pessoa.setIdade(idade);
-        } else {
-          System.out.println("Informe uma idade valida entre 0 e 120 anos.");
-        }
-      } while (pessoa.getIdade() == 0);
-
-      String cpf;
-      do {
-        System.out.print("Informe o CPF dessa pessoa, no formato 000.000.000-00: ");
-        cpf = scanner.nextLine();
-        if (Validacoes.validarCPF(cpf)) {
-          pessoa.setCPF(cpf);
-        } else {
-          System.out.println("Digite o CPF corretamente!");
-        }
-      } while (pessoa.getCPF() == "");
+      Validacoes.coletaNome(pessoa);
+      Validacoes.coletaIdade(pessoa);
+      Validacoes.coletaCPF(pessoa);
 
       grupo.cadastrarPessoa(pessoa);
+      for (Pessoa p : listaDePessoas) {
+        System.out.println(p.getNome());
+      }
     }
 
     for (int i = 0; i < listaDePessoas.size(); i++) {
@@ -62,9 +33,9 @@ public class Main {
           + " anos e seu CPF é " + listaDePessoas.get(i).getCPF());
     }
 
-    boolean verificacao = true;
+    boolean manterPrograma = true;
 
-    while (verificacao) {
+    while (manterPrograma) {
       System.out.println("***** MENU DE CADASTRO *****");
       System.out.println("\nPressione a tecla de acordo com a opção desejada:");
       System.out.println("[1] - Para cadastrar uma pessoa.");
@@ -80,94 +51,29 @@ public class Main {
 
       int resposta = scanner.nextInt();
 
-      if (resposta > 0 && resposta < 5) {
-        verificacao = false;
-      }
-      Scanner novoScanner = new Scanner(System.in);
       switch (resposta) {
         case 1:
-          System.out.println("\nInforme o nome: ");
-          String nome = novoScanner.nextLine();
-          if (nome.matches(" ") || !Validacoes.validarPalavras(nome)) {
-            System.out.println("Nome inválido!");
-            break;
-          }
+          Pessoa pessoa = Pessoa.criarPessoaVazio();
 
-          System.out.println("Informe a idade: ");
-          String idadeStr = novoScanner.nextLine();
-          if (idadeStr.matches(" ") || !Validacoes.validarIdade(idadeStr)) {
-            System.out.println("Idade inválida!");
-            return;
-          }
-          int idade = Integer.parseInt(idadeStr);
-
-          System.out.println("Informe o cpf: ");
-          String cpf = novoScanner.nextLine();
-          if (!Validacoes.validarCPF(cpf)) {
-            System.out.println("CPF inválido!");
-            return;
-          }
-
-          Pessoa pessoa = Pessoa.criarPessoaSemEnd(nome, idade, cpf);
-
-          System.out.println("Informe o estado: ");
-          String estado = novoScanner.nextLine();
-          if (estado.matches(" ") || !Validacoes.validarPalavras(estado)) {
-            System.out.println("Estado inválido!");
-            return;
-          }
-
-          System.out.println("Informe a cidade: ");
-          String cidade = novoScanner.nextLine();
-          if (cidade.matches(" ") || !Validacoes.validarPalavras(cidade)) {
-            System.out.println("Cidade inválida!");
-            return;
-          }
-
-          System.out.println("Informe o bairro: ");
-          String bairro = novoScanner.nextLine();
-          if (bairro.matches(" ") || !Validacoes.validarPalavras(bairro)) {
-            System.out.println("Bairro inválido!");
-            return;
-          }
-
-          System.out.println("Informe a rua: ");
-          String rua = novoScanner.nextLine();
-          if (rua.matches(" ") || !Validacoes.validarPalavras(rua)) {
-            System.out.println("Rua inválida!");
-            return;
-          }
-
-          System.out.println("Informe o CEP: ");
-          String cep = novoScanner.nextLine();
-          if (!Validacoes.validarCEP(cep)) {
-            System.out.println("CEP inválido!");
-            return;
-          }
-
-          System.out.println("Informe o telefone: ");
-          String telefone = novoScanner.nextLine();
-          if (!Validacoes.validarTelefone(telefone)) {
-            System.out.println("Telefone inválido!");
-            return;
-          }
-
-          Endereco endereco = new Endereco(estado, cidade, bairro, rua, cep, telefone);
-
-          pessoa.setEndereco(endereco);
+          Validacoes.coletaNome(pessoa);
+          Validacoes.coletaIdade(pessoa);
+          Validacoes.coletaCPF(pessoa);
+          Validacoes.coletaEstado(pessoa);
+          Validacoes.coletaCidade(pessoa);
+          Validacoes.coletaBairro(pessoa);
+          Validacoes.coletaRua(pessoa);
+          Validacoes.coletaCEP(pessoa);
+          Validacoes.coletaTelefone(pessoa);
 
           grupo.cadastrarPessoa(pessoa);
           break;
 
         case 2:
-          grupo.mostrarGrupo();
-
+          Scanner scanner2 = new Scanner(System.in);
           System.out.print("Qual nome da pessoa que você deseja excluir? ");
-          String nomeExcluir = scanner.nextLine();
+          String nomeExcluir = scanner2.nextLine();
 
           grupo.excluirPessoa(nomeExcluir);
-
-          grupo.mostrarGrupo();
           break;
 
         case 3:
@@ -175,14 +81,11 @@ public class Main {
           break;
 
         case 4:
-          novoScanner.close();
+          manterPrograma = false;
           scanner.close();
           System.out.println("|| Você saiu do programa! ||");
           System.exit(0);
       }
-
     }
-
   }
-
 }
