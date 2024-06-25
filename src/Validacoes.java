@@ -47,7 +47,7 @@ public class Validacoes {
     String idadeStr;
     int idade = 0;
     do {
-      System.out.print("Informe a idade dessa pessoa (0-120): ");
+      System.out.print("Informe a idade dessa pessoa (1-120): ");
       idadeStr = scanner.nextLine().trim();
       if (!idadeStr.matches(" ") && validarIdade(idadeStr)) {
         idade = Integer.parseInt(idadeStr);
