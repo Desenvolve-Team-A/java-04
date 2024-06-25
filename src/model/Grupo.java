@@ -5,39 +5,49 @@ import java.util.List;
 
 public class Grupo {
 
-    private List<Pessoa> grupo = new ArrayList<>();
+  private static Grupo uniqueInstance;
 
-    public void cadastrarPessoa(Pessoa pessoa){
-        if (grupo.size() < 10){
-            grupo.add(pessoa);
-        } else {
-            System.out.println("Não é possível cadastrar mais pessoas.");
-        }
+  private List<Pessoa> listaDePessoas = new ArrayList<>();
+
+  public static synchronized Grupo getInstance() {
+    if (uniqueInstance == null) {
+      uniqueInstance = new Grupo();
+    }
+    return uniqueInstance;
+  }
+
+  public List<Pessoa> getListaDePessoas() {
+    return listaDePessoas;
+  }
+
+  public void cadastrarPessoa(Pessoa pessoa) {
+    if (listaDePessoas.size() < 11) {
+      listaDePessoas.add(pessoa);
+    } else {
+      System.out.println("Não é possível cadastrar mais pessoas.");
+    }
+  }
+
+  public void excluirPessoa(String nome) {
+    Pessoa pessoa = null;
+    for (Pessoa p : listaDePessoas) {
+      if (p.getNome().equals(nome)) {
+        pessoa = p;
+        break;
+      }
+    }
+    if (pessoa != null) {
+      listaDePessoas.remove(pessoa);
+    } else {
+      System.out.println("Pessoa nao localizada");
     }
 
-    public void excluirPessoa(String nome){
+  }
 
-        Pessoa pessoa = null;
-
-        for (Pessoa p : grupo){
-            if (p.getNome().equals(nome)){
-                pessoa = p;
-            }
-        }
-
-        if (grupo.contains(pessoa)){
-            grupo.remove(pessoa);
-        } else {
-            System.out.println("Pessoa não cadastrada.");
-        }
+  public void mostrarGrupo() {
+    System.out.println("** PESSOAS CADASTRADAS **");
+    for (Pessoa p : listaDePessoas) {
+      System.out.println("\n" + p.getNome());
     }
-
-    public void mostrarGrupo(){
-        System.out.println("** PESSOAS CADASTRADAS **");
-
-        for (Pessoa p : grupo){
-            System.out.println("\n" + p.getNome());
-        }
-    }
-
+  }
 }
