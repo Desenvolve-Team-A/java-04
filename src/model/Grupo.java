@@ -24,7 +24,7 @@ public class Grupo {
     if (listaDePessoas.size() < 11) {
       listaDePessoas.add(pessoa);
     } else {
-      System.out.println("Nao e possivel cadastrar mais pessoas.");
+      System.out.println("\nNao e possivel cadastrar mais pessoas.");
     }
   }
 
@@ -33,13 +33,14 @@ public class Grupo {
     for (Pessoa p : listaDePessoas) {
       if (p.getNome().equals(nome)) {
         pessoa = p;
+        System.out.println("\nPessoa excluida!");
         break;
       }
     }
     if (pessoa != null) {
       listaDePessoas.remove(pessoa);
     } else {
-      System.out.println("Pessoa nao localizada");
+      System.out.println("\nPessoa nao localizada");
     }
 
   }

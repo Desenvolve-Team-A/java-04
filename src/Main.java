@@ -33,7 +33,7 @@ public class Main {
     boolean manterPrograma = true;
 
     while (manterPrograma) {
-      System.out.println("***** MENU DE CADASTRO *****");
+      System.out.println("\n***** MENU DE CADASTRO *****");
       System.out.println("\nPressione a tecla de acordo com a opcao desejada:");
       System.out.println("[1] - Para cadastrar uma pessoa.");
       System.out.println("[2] - Para excluir uma pessoa.");
@@ -67,7 +67,7 @@ public class Main {
 
         case 2:
           Scanner scanner2 = new Scanner(System.in);
-          System.out.print("Qual nome da pessoa que voce deseja excluir? ");
+          System.out.print("\nQual nome da pessoa que voce deseja excluir? ");
           String nomeExcluir = scanner2.nextLine();
 
           grupo.excluirPessoa(nomeExcluir);
@@ -80,7 +80,7 @@ public class Main {
         case 4:
           manterPrograma = false;
           scanner.close();
-          System.out.println("|| Voce saiu do programa! ||");
+          System.out.println("\n|| Voce saiu do programa! ||");
           System.exit(0);
       }
     }

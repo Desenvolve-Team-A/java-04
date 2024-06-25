@@ -9,6 +9,10 @@ public class Validacoes {
     return nome.matches("^[a-zA-Z\\s]+$");
   }
 
+  public static boolean validarEstado(String nome) {
+    return nome.matches("^[A-Z]{2}$");
+  }
+
   public static boolean validarIdade(String idadeStr) {
     return idadeStr.matches("^(?:1[01][0-9]|120|[1-9]?[0-9])$");
   }
@@ -73,17 +77,17 @@ public class Validacoes {
     do {
       System.out.println("Informe o estado: ");
       String estado = scanner.nextLine();
-      if (!estado.matches(" ") && validarPalavras(estado)) {
+      if (!estado.matches(" ") && validarEstado(estado)) {
         pessoa.getEndereco().setEstado(estado);
       } else {
-        System.out.println("Estado invalido!");
+        System.out.print("Estado invalido!");
       }
     } while (pessoa.getEndereco().getEstado() == "");
   }
 
   public static void coletaCidade(Pessoa pessoa) {
     do {
-      System.out.println("Informe a cidade: ");
+      System.out.print("Informe a cidade: ");
       String cidade = scanner.nextLine();
       if (!cidade.matches(" ") && validarPalavras(cidade)) {
         pessoa.getEndereco().setCidade(cidade);
@@ -95,7 +99,7 @@ public class Validacoes {
 
   public static void coletaBairro(Pessoa pessoa) {
     do {
-      System.out.println("Informe o bairro: ");
+      System.out.print("Informe o bairro: ");
       String bairro = scanner.nextLine();
       if (!bairro.matches(" ") && validarPalavras(bairro)) {
         pessoa.getEndereco().setBairro(bairro);
@@ -107,7 +111,7 @@ public class Validacoes {
 
   public static void coletaRua(Pessoa pessoa) {
     do {
-      System.out.println("Informe a rua: ");
+      System.out.print("Informe a rua: ");
       String rua = scanner.nextLine();
       if (!rua.matches(" ") && validarPalavras(rua)) {
         pessoa.getEndereco().setRua(rua);
@@ -119,7 +123,7 @@ public class Validacoes {
 
   public static void coletaCEP(Pessoa pessoa) {
     do {
-      System.out.println("Informe o CEP: ");
+      System.out.print("Informe o CEP: ");
       String cep = scanner.nextLine();
       if (validarCEP(cep)) {
         pessoa.getEndereco().setCep(cep);
@@ -131,7 +135,7 @@ public class Validacoes {
 
   public static void coletaTelefone(Pessoa pessoa) {
     do {
-      System.out.println("Informe o telefone: ");
+      System.out.print("Informe o telefone: ");
       String telefone = scanner.nextLine();
       if (validarTelefone(telefone)) {
         pessoa.getEndereco().setTelefone(telefone);
