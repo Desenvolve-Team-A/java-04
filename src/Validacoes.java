@@ -75,7 +75,7 @@ public class Validacoes {
 
   public static void coletaEstado(Pessoa pessoa) {
     do {
-      System.out.println("Informe o estado: ");
+      System.out.print("Informe o estado: ");
       String estado = scanner.nextLine();
       if (!estado.matches(" ") && validarEstado(estado)) {
         pessoa.getEndereco().setEstado(estado);

@@ -43,46 +43,51 @@ public class Main {
 
       while (!scanner.hasNextInt()) {
         System.out.println("Opcao invalida!");
-        scanner.nextInt();
+        System.out.print("Escolha novamente: ");
+        scanner.next();
       }
 
       int resposta = scanner.nextInt();
 
-      switch (resposta) {
-        case 1:
-          Pessoa pessoa = Pessoa.criarPessoaVazio();
+      if (resposta > 0 && resposta < 5) {
+        switch (resposta) {
+          case 1:
+            Pessoa pessoa = Pessoa.criarPessoaVazio();
 
-          Validacoes.coletaNome(pessoa);
-          Validacoes.coletaIdade(pessoa);
-          Validacoes.coletaCPF(pessoa);
-          Validacoes.coletaEstado(pessoa);
-          Validacoes.coletaCidade(pessoa);
-          Validacoes.coletaBairro(pessoa);
-          Validacoes.coletaRua(pessoa);
-          Validacoes.coletaCEP(pessoa);
-          Validacoes.coletaTelefone(pessoa);
+            Validacoes.coletaNome(pessoa);
+            Validacoes.coletaIdade(pessoa);
+            Validacoes.coletaCPF(pessoa);
+            Validacoes.coletaEstado(pessoa);
+            Validacoes.coletaCidade(pessoa);
+            Validacoes.coletaBairro(pessoa);
+            Validacoes.coletaRua(pessoa);
+            Validacoes.coletaCEP(pessoa);
+            Validacoes.coletaTelefone(pessoa);
 
-          grupo.cadastrarPessoa(pessoa);
-          break;
+            grupo.cadastrarPessoa(pessoa);
+            break;
 
-        case 2:
-          Scanner scanner2 = new Scanner(System.in);
-          System.out.print("\nQual nome da pessoa que voce deseja excluir? ");
-          String nomeExcluir = scanner2.nextLine();
+          case 2:
+            Scanner scanner2 = new Scanner(System.in);
+            System.out.print("\nQual nome da pessoa que voce deseja excluir? ");
+            String nomeExcluir = scanner2.nextLine();
 
-          grupo.excluirPessoa(nomeExcluir);
-          break;
+            grupo.excluirPessoa(nomeExcluir);
+            break;
 
-        case 3:
-          grupo.mostrarGrupo();
-          break;
+          case 3:
+            grupo.mostrarGrupo();
+            break;
 
-        case 4:
-          manterPrograma = false;
-          scanner.close();
-          System.out.println("\n|| Voce saiu do programa! ||");
-          System.exit(0);
+          case 4:
+            manterPrograma = false;
+            scanner.close();
+            System.out.println("\n|| Voce saiu do programa! ||");
+        }
+      } else {
+        System.out.println("Opcao invalida!");
       }
+
     }
   }
 }
