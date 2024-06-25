@@ -24,7 +24,7 @@ public class Grupo {
     if (listaDePessoas.size() < 11) {
       listaDePessoas.add(pessoa);
     } else {
-      System.out.println("Não é possível cadastrar mais pessoas.");
+      System.out.println("Nao e possivel cadastrar mais pessoas.");
     }
   }
 
