@@ -9,8 +9,8 @@ public class Validacoes {
     return nome.matches("^[a-zA-Z\\s]+$");
   }
 
-  public static boolean validarEstado(String nome) {
-    return nome.matches("^[A-Z]{2}$");
+  public static boolean validarEstado(String estado) {
+    return estado.matches("^[A-Z]{2}$");
   }
 
   public static boolean validarIdade(String idadeStr) {
@@ -33,7 +33,7 @@ public class Validacoes {
     String nome;
     do {
       System.out.print("Informe o nome dessa pessoa: ");
-      nome = scanner.nextLine();
+      nome = scanner.nextLine().trim();
       if (!nome.matches(" ") && validarPalavras(nome)) {
         pessoa.setNome(nome);
       } else {
